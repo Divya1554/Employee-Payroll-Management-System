@@ -1,0 +1,16 @@
+# Build output
+target/
+
+# Local secrets and runtime output - never commit
+config/application-local.properties
+logs/
+payslips/
+
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+*.class

@@ -1,0 +1,13 @@
+# Copy this file to  config/application-local.properties  and edit it.
+# config/application-local.properties is listed in .gitignore - never commit it.
+#
+# Environment variables take priority over this file:
+#   PAYROLL_DB_URL, PAYROLL_DB_USER, PAYROLL_DB_PASSWORD
+
+db.url=jdbc:mysql://localhost:3306/employee_payroll_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+db.username=root
+db.password=root
+
+# Any property from application.properties can also be overridden here, e.g.
+# company.name=My Company Pvt. Ltd.
+# payroll.payable.days.mode=FIXED

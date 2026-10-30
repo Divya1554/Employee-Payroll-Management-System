@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!--
+    Hibernate configuration.
+
+    NOTE: The JDBC URL, user name and password are intentionally NOT stored here.
+    HibernateUtil injects them at start-up from (highest priority first):
+        1. environment variables  PAYROLL_DB_URL / PAYROLL_DB_USER / PAYROLL_DB_PASSWORD
+        2. config/application-local.properties  (db.url / db.username / db.password)
+        3. defaults in application.properties    (URL and user only - never a password)
+-->
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC driver (MySQL 8 Connector/J). Dialect is auto-detected by Hibernate 6. -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <!-- Built-in pool: fine for a single-user console application -->
+        <property name="hibernate.connection.pool_size">8</property>
+
+        <!-- Schema management: update = create/alter tables from the entity mappings.
+             Use "validate" if you create the schema with sql/02_schema.sql instead. -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- SQL logging (set to true while studying generated SQL) -->
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Performance helpers -->
+        <property name="hibernate.jdbc.batch_size">20</property>
+        <property name="hibernate.order_inserts">true</property>
+        <property name="hibernate.default_batch_fetch_size">16</property>
+
+        <!-- Annotated entity classes -->
+        <mapping class="com.mca.payroll.entity.Department"/>
+        <mapping class="com.mca.payroll.entity.Employee"/>
+        <mapping class="com.mca.payroll.entity.SalaryStructure"/>
+        <mapping class="com.mca.payroll.entity.Attendance"/>
+        <mapping class="com.mca.payroll.entity.LeaveRequest"/>
+        <mapping class="com.mca.payroll.entity.Payroll"/>
+        <mapping class="com.mca.payroll.entity.User"/>
+    </session-factory>
+</hibernate-configuration>

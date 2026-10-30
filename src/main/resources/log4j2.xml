@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Logging goes to logs/payroll.log only, so the console menu stays clean.
+    To see the SQL that Hibernate generates, set the org.hibernate.SQL logger to DEBUG
+    (or set hibernate.show_sql to true in hibernate.cfg.xml).
+-->
+<Configuration status="WARN">
+    <Appenders>
+        <RollingFile name="File" fileName="logs/payroll.log"
+                     filePattern="logs/payroll-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.mca.payroll" level="info" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="org.hibernate" level="warn" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Root level="warn">
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
